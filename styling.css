@@ -1,0 +1,121 @@
+.mainForm {
+    border: 2px solid grey;
+    width: 45%;
+    margin: auto;
+    margin-bottom: 10px;
+}
+
+.saveButton {
+    margin-left: 20px;
+    vertical-align: auto;
+    color: blue;
+    background-color: white;
+    border-radius: 15%;
+}
+
+.tableHeader {
+    background-color: darkblue;
+    font-weight: bold;
+    margin: 0px;
+}
+
+.tableHeader > th{
+    border-bottom: 2px solid grey;
+}
+
+.newCell {
+    border: 1px solid grey;
+}
+.newCell:hover{
+    background-color: blue;
+    border-color: yellow;
+}
+
+.tableRow {
+    background-color: darkblue;
+}
+
+.buttonDiv {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-bottom: 13px;
+    background-color: darkblue;
+    border: 2px solid grey;
+    margin: 0 auto;
+    width: 45.2%;
+}
+
+.actionButton {
+    border-radius: 20px;
+    border:1px solid grey;
+    box-shadow: 0px 3px lightgrey;
+    margin-right: 4px;
+}
+
+.actionButton:hover {
+    transform: translate(0,-2px);
+    border: 2px solid yellow;
+}
+
+.actionButton:active {
+    background:rgb(117, 160, 173);
+    border: 2px solid yellow;
+    transform: translate(0, 2px);
+    box-shadow: 0 0;
+}
+
+.mainDiv {
+    width:50%;
+    margin: 0 auto;
+    align-content: center;
+    text-align: center;
+}
+
+.pageTitle {
+    width: 100%;
+    
+}
+
+.taskTable {
+    width: 45.5%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    text-align: center;
+    border: 2px solid grey;
+    color: white
+    /* border-collapse:separate;
+    border-spacing: 0 10px; */
+}
+
+.deleteRecord {
+    margin: 5px 5px 5px 5px;
+    border-radius: 10px;
+    box-shadow: 0px 3px lightgrey;
+}
+.deleteRecord:hover {
+    border: 2px solid yellow;
+    background: lightblue;
+    transform: translate(0,-2px);
+}
+.deleteRecord:active {
+    border: 2px solid yellow;
+    background:rgb(117, 160, 173);
+    transform: translate(0, 2px);
+    box-shadow: 0 0;
+}
+
+.formAlert {
+    border: 5px double grey;
+    color: black;
+    font-weight: bold;
+    background-color: red;
+}
+.formAlert:hover {
+    color: white;
+    background-color: blue;
+    border: 5px double yellow;
+}
+
+
+
