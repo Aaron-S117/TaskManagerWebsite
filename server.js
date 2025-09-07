@@ -118,8 +118,10 @@ const server = http.createServer((req, res) => {
           res.end(JSON.stringify({error: "Missing required fields: task and status"}));
           return;
         }
-        const stmt = db.prepare("UPDATE tasks SET ? = ? WHERE ID = ?")
-        const info = stmt.run(field, value, ID);
+
+        //console.log(`UPDATE tasks SET ${field} = '${value}' WHERE ID = ${ID}`);
+        const stmt = db.prepare(`UPDATE tasks SET ${field} = '${value}' WHERE ID = ${ID}`);
+        const info = stmt.run();
 
         res.statusCode = 201;
         res.end(JSON.stringify({ id: info.lastInsertRowid, message: "Task updated successfully" }));
