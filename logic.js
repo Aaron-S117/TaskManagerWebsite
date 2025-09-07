@@ -46,29 +46,45 @@ function populateAPIData(result){
     return;
 }
 
-async function updateCheckBox() {
+async function updateCheckBox(checkBoxElement) {
+    
+    if (checkBoxElement.checked === true){
+        const parentRow = checkBoxElement.closest(".tableRow");
+        const parentRowElement = parentRow.id
+        const parentRowID = parentRowElement.substring(6);
+        console.log(parentRowID);
+
+        updateRecord("DONE", "1", parentRowID);
+    }
+    else if (checkBoxElement.checked === false){
+        const parentRow = checkBoxElement.closest(".tableRow");
+        const parentRowElement = parentRow.id
+        const parentRowID = parentRowElement.substring(6);
+        console.log(parentRowID);
+
+        updateRecord("DONE", "0", parentRowID);
+    }
+    else{
+        console.log("Nothing Happening, CheckBox in weird state?");
+    }
     return;
 }
 
 async function updateRecord(field, value, ID) {
-    const parentRow = element.closest(".tableRow");
-    const parentRowElement = parentRow.id
-    const parentRowID = parentRowElement.substring(6);
-    const url = baseURL + "/removeSingleTask/" + parentRowID;
 
+    const url = baseURL + "/change";
     const updateData = {
         field: field,
         value: value,
         ID: ID
     }
-
     try {
         const response = await fetch(url, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: updateData
+            body: JSON.stringify(updateData)
         });
 
         if (!response.ok){
@@ -272,6 +288,13 @@ function setNewCellValuesAPI(result, newcell, newcell2, newcell3, newcell4) {
     const checkbox = document.createElement("input");
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("class", "taskCheckBox");
+    checkbox.setAttribute("onClick", "updateCheckBox(this)")
+    if (result.DONE === 0){
+        checkbox.checked = false;
+    }
+    else if (result.DONE === 1){
+        checkbox.checked = true;
+    }
     newcell3.appendChild(checkbox);
 
     let deleteButton = createDeleteButton("Record" + result.ID);

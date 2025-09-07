@@ -108,10 +108,9 @@ const server = http.createServer((req, res) => {
     req.on('data', (chunk) => {
       body += chunk.toString(); // convert buffer to string
     });
-
     req.on('end', () =>{
       try {
-        const {field, value, ID} = JSON.parse(body);
+        let {field, value, ID} = JSON.parse(body);
       
         if(!field || !value || !ID) {
           res.statusCode = 400;
@@ -119,7 +118,7 @@ const server = http.createServer((req, res) => {
           return;
         }
 
-        //console.log(`UPDATE tasks SET ${field} = '${value}' WHERE ID = ${ID}`);
+        // console.log(`UPDATE tasks SET ${field} = '${value}' WHERE ID = ${ID}`);
         const stmt = db.prepare(`UPDATE tasks SET ${field} = '${value}' WHERE ID = ${ID}`);
         const info = stmt.run();
 
