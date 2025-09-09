@@ -117,5 +117,27 @@
     border: 5px double yellow;
 }
 
+.tableHead {
+    visibility: visible;
+}
+
+.tableHead:hover {
+    background-color: blue;
+}
+
+.tableHeadCollapsed {
+    visibility: collapse;
+    /* display: none; */
+    width: 0%;
+}
+
+.collapseButton {
+    color: black;
+    font-weight: bold;
+}
+
+.tableRowCollapsed {
+    visibility: collapse;
+}
 
 

@@ -6,7 +6,7 @@ let validation = false;
 localStorage.getItem("objectCountStorage");
 let task;
 
-baseURL = "INSERT BASE URL";
+baseURL = "http://localhost:3000";
 
 // retrieve data from the database
 async function getData() {
@@ -266,22 +266,27 @@ function createNewTableRowAPI(result) {
     newcell4.id = "cell-" + result.ID + "-4";
     newcell4.className = "newCell";
 
-    setNewCellValuesAPI(result, newcell, newcell2, newcell3, newcell4);
-    appendNewCells(newRow, newcell, newcell2, newcell3, newcell4);
+    let newcell5 = document.createElement("td");
+    newcell5.id = "cell-" + result.ID + "-5";
+    newcell5.className = "newCell";
+
+    setNewCellValuesAPI(result, newcell, newcell2, newcell3, newcell4, newcell5);
+    appendNewCells(newRow, newcell, newcell2, newcell3, newcell4, newcell5);
     return newRow;
 }
 
-function appendNewCells(newRow, newcell, newcell2, newcell3, newcell4) 
+function appendNewCells(newRow, newcell, newcell2, newcell3, newcell4, newcell5) 
 {
     console.log("Appending new cells");
     newRow.appendChild(newcell);
     newRow.appendChild(newcell2);
     newRow.appendChild(newcell3);
     newRow.appendChild(newcell4);
+    newRow.appendChild(newcell5);
     return 'true';
 }
 
-function setNewCellValuesAPI(result, newcell, newcell2, newcell3, newcell4) {
+function setNewCellValuesAPI(result, newcell, newcell2, newcell3, newcell4, newcell5) {
     newcell.textContent = result.TASKS;
     newcell2.textContent = result.STATUS;
 
@@ -300,6 +305,12 @@ function setNewCellValuesAPI(result, newcell, newcell2, newcell3, newcell4) {
     let deleteButton = createDeleteButton("Record" + result.ID);
     newcell4.appendChild(deleteButton);
 
+    let collapseButton = document.createElement("button")
+    collapseButton.setAttribute('class', 'collapseButton');
+    collapseButton.textContent = "<";
+    collapseButton.setAttribute('onclick', 'toggleRow(this)');
+    newcell5.appendChild(collapseButton)
+
     return 'true';
 }
 
@@ -311,6 +322,39 @@ function createDeleteButton(recordId){
     deleteButton.textContent = "Delete";
 
     return deleteButton;
+}
+
+// Set the value of the text area box, if there's a value in local storage
+function setTaskInput() {
+    task = textItem.value;
+}
+
+let tableHeader = document.querySelectorAll(".tableHead");
+
+tableHeader.forEach(item => {
+    item.addEventListener("click", function() {
+        console.log("CollapsingHeader");
+        item.classList.remove("tableHead");
+        item.classList.add("tableHeadCollapsed");
+    });
+});
+
+let tableHeaderHidden = document.querySelectorAll(".tableHeadCollapsed");
+
+tableHeaderHidden.forEach(item => {
+    item.addEventListener("click", function() {
+        console.log("ExpandingHeader");
+        item.classList.remove("tableHeadCollapsed");
+        item.classList.add("tableHead");
+        
+    });
+});
+
+function toggleRow(button) {
+    console.log("Collapsing Row")
+    let row = button.closest(".tableRow");
+    row.classList.add("tableRowCollapsed");
+    row.classList.remove("tableRow");
 }
 
 // let objectCountStorage;
@@ -339,11 +383,6 @@ function createDeleteButton(recordId){
 //         }
 //     }
 // }
-
-// Set the value of the text area box, if there's a value in local storage
-function setTaskInput() {
-    task = textItem.value;
-}
 
 // function saveNewRow() {
 //     if (textItem.value === null)
@@ -421,18 +460,18 @@ function setTaskInput() {
 //     return 'true';
 // }
 
-function setNewLocalRecord(newRow, newcell, newcell2, newcell3, newcell4, objectCount)
-{
-    const newRecord = 
-    {
-        row: objectCount,
-        Task: newcell.textContent,
-        Status: newcell2.textContent,
-        Done: null,
-        Delete: null
-    }
+// function setNewLocalRecord(newRow, newcell, newcell2, newcell3, newcell4, objectCount)
+// {
+//     const newRecord = 
+//     {
+//         row: objectCount,
+//         Task: newcell.textContent,
+//         Status: newcell2.textContent,
+//         Done: null,
+//         Delete: null
+//     }
 
-    const newRecordAsString = JSON.stringify(newRecord);
-    localStorage.setItem('Record' + objectCount, newRecordAsString);
-}
+//     const newRecordAsString = JSON.stringify(newRecord);
+//     localStorage.setItem('Record' + objectCount, newRecordAsString);
+// }
 
