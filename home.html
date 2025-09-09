@@ -1,0 +1,41 @@
+<head>
+    <link rel="stylesheet" href="styling.css">
+    <title>Task Manager</title>
+    <link rel="icon" type="image/x-icon" href="resources/tabicon.png">
+</head>
+
+<body onload="getData()" style="background-color: black; font-family: Courier New;">    
+    <div class="mainDiv">
+        <h1 class="pageTitle" style="color:white; font-size: 27px;">Welcome to your Task Manager</h1>
+
+        <div class="mainForm">
+            <div style="margin-top: 5px; margin-bottom: 6px; border-bottom: 2px solid grey; padding-bottom: 10px;">
+                <button id='postAPIData' class="actionButton" onclick="postData();">Post API Data</button>
+            </div>
+            <div style="padding-top: 5px; margin-bottom: 5px; border-top: 2px solid black;">
+                <textarea id="taskInput" placeholder="Enter your task here..." oninput="setTaskInput()" style="width: 97%;"></textarea>
+            </div>
+            <!-- <button class="saveButton" type="button" onclick="saveNewRow()">Save</button>-->
+        </div>
+
+        <table id='taskTable' class="taskTable"> 
+            <div class="buttonDiv">
+                <button id='getAPIData' class="actionButton" onclick="getData()">Get API Data</button>
+                <button id='removeAPIData' class="actionButton" onclick="deleteAllRecords()">Remove API Data</button>
+                <button id='createTestData' class="actionButton" onclick="createTestData()">Create Test Data</button>
+            </div>
+            <thead>
+                <tr class="tableHeader">
+                    <th class="tableHead">Task</th>
+                    <th class="tableHead">Status</th>
+                    <th class="tableHead">Done?</th>
+                    <th class="tableHead">Delete</th>
+                    <th class="tablHeade">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="taskTableBody">
+            </tbody>
+        </table>
+        <script src="logic.js"></script>
+    </div> 
+</body>
