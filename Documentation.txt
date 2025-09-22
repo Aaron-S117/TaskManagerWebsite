@@ -2,3 +2,9 @@ run node server.js
 	- to run backend server
 python -m http.server 8080
 	- to run frontend server
+
+docker-compose up --build
+	- WARNING: Have docker enginer running on your local PC
+	- Run this command in the base project directory
+	- Creates docker containers and images from files in project/repository
+	- Spins up the frontend, backend/database environments. 
