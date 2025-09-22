@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    volumes:
+      # This volume persists the SQLite database file.
+      # The host path (left) is mapped to the container path (right).
+      - ./backend/database:/app/database
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
