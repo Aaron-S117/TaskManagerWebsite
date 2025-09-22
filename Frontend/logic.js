@@ -1,14 +1,22 @@
 const textItem = document.getElementById("taskInput");
 const taskTableBody = document.getElementById("taskTableBody");
 const taskTable = document.getElementById("taskTable");
-let dataLoaded = false;
+// let dataLoaded = false;
 let validation = false;
 localStorage.getItem("objectCountStorage");
 let task;
 
+const trash = [
+    
+]
+
 baseURL = "http://localhost:3000";
 
-// retrieve data from the database
+// Simulates creating a getting data at certain time spans
+// const intervalTestdata = setInterval(createTestData, 10000);
+// const intervalGetdata = setInterval(getData, 11000);
+
+// retrieve data from the database and creates UI based off that data
 async function getData() {
     const url = baseURL + "/tasks";
     try {
@@ -27,21 +35,23 @@ async function getData() {
 
 function populateAPIData(result){
     // console.log(result[0]);
-    if (dataLoaded == true) {
-        alert('Data Already Loaded!');
-        return;
-    }
-    else {
-        Object.values(result).forEach(value => {
-            console.log(value);
-            console.log(value.ID);
-            // console.log(value.TASKS);
-            // console.log(value.STATUS);
-            // console.log(value.DONE);
-            saveNewRowAPI(value);
-            dataLoaded = true
-        })
-    }
+    // if (dataLoaded == true) {
+    //     console.log('Data already loaded');
+    //     alert('Data Already Loaded!');
+    //     return;
+    // }
+
+    taskTableBody.innerHTML = '';
+
+    Object.values(result).forEach(value => {
+        console.log(value);
+        console.log(value.ID);
+        // console.log(value.TASKS);
+        // console.log(value.STATUS);
+        // console.log(value.DONE);
+        saveNewRowAPI(value);
+        // dataLoaded = true
+    })
     // console.log(jsObjects);
     return;
 }
@@ -206,11 +216,11 @@ async function postData() {
     }
 }
 
-
+// Used with the create test data button
 async function createTestData(){
     const url = baseURL + "/add";
 
-    for (let i = 0; i < 100; i++){
+    for (let i = 0; i < 1; i++){
         const newTask = {
             task: 'test-' + Math.round(Math.random() * 100000) ,
             status: 'Not Done',
@@ -236,6 +246,7 @@ async function createTestData(){
           console.error(error.message);
         }
     }
+    // Reloads page
     return(location.reload());
 }
 
