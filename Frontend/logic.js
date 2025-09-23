@@ -366,6 +366,7 @@ function toggleRow(button) {
 }
 
 let sidebarButton = document.getElementById("sidebarButton");
+let sidebar = document.getElementById("sidebar");
 
 sidebarButton.addEventListener('click', () => {
     console.log('toggling sidebar');
@@ -374,10 +375,12 @@ sidebarButton.addEventListener('click', () => {
 
     if (sidebarOpen === false) {
         sidebarContent.setAttribute("class", "sidebarContentsOpened");
+        sidebar.classList.add('active');
         sidebarOpen = true;
     }
     else if (sidebarOpen === true) {
         sidebarContent.setAttribute("class", "sidebarContentsClosed");
+        sidebar.classList.remove('active');
         sidebarOpen = false;
     }
     
