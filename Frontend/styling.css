@@ -144,31 +144,44 @@
 }
 
 .sidebar {
-    width: 3%;
+    width: 5%;
     height: 100%;
     position: fixed;
     top: 8;
     left: 0;
-    transition: all .6s ease-in-out;
+    transition: all .15s ease-in;
+    
 }
 .sidebar.active {
     width: 10%;
+    transition-delay: .2s;
+    transition-property: all;
+    transition-duration: .2s;
+    transition-timing-function: ease-in-out;
 }
 
 #sidebarButton {
-    margin-top: 8px;
-    margin-left: 12px;
+    transition: all .15s ease-in;
     margin-bottom: 5px;
+}
+
+#sidebarButton.active {
+     transform: translateX(750%);
+     transition-delay: .2s;
+     transition-property: all;
+     transition-duration: .2s;
+     transition-timing-function: ease-in-out;
 }
 
 .sidebarButtonDiv {
     border-right: 2px solid grey;
     border-bottom: 2px solid grey;
     width: 100%;
+    align-content: center;
 }
 
 .sidebarContentsClosed {
-    transform: translateX(-100%);
+    transform: translateX(-300%);
     width: 100%;
     height: 100%;
     transition: all .15s ease-in;
@@ -187,7 +200,7 @@
 }
 
 .sidebarButton {
-    
+    margin-left: 50px;
     margin-top: 8px;
 }
 

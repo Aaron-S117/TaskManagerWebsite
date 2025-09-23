@@ -375,12 +375,14 @@ sidebarButton.addEventListener('click', () => {
 
     if (sidebarOpen === false) {
         sidebarContent.setAttribute("class", "sidebarContentsOpened");
-        sidebar.classList.add('active');
+        sidebar.classList.toggle('active');
+        sidebarButton.classList.toggle('active')
         sidebarOpen = true;
     }
     else if (sidebarOpen === true) {
         sidebarContent.setAttribute("class", "sidebarContentsClosed");
-        sidebar.classList.remove('active');
+        sidebar.classList.toggle('active');
+        sidebarButton.classList.toggle('active')
         sidebarOpen = false;
     }
     
