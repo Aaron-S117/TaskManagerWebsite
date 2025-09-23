@@ -70,11 +70,13 @@
     margin: 0 auto;
     align-content: center;
     text-align: center;
+    position: absolute;
+    top: -5px;
+    right: 500px;
 }
 
 .pageTitle {
     width: 100%;
-    
 }
 
 .taskTable {
@@ -138,6 +140,33 @@
 
 .tableRowCollapsed {
     visibility: collapse;
+    transition: all .4s linear;
 }
+
+.sidebar {
+    width: 8%;
+    position: sticky;
+    top: 8;
+}
+
+.sidebarContentsClosed {
+    margin-left: -500px;
+    transition: all .2s ease-in;
+}
+
+.sidebarContentsOpened {
+    margin-left: 0px;
+    padding-top: 5px;
+    padding-bottom: 7px;
+    background-color: blue;
+    transition: all .2s ease-in-out;
+}
+
+.sidebarButton {
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+
 
 

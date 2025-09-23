@@ -5,10 +5,7 @@ const taskTable = document.getElementById("taskTable");
 let validation = false;
 localStorage.getItem("objectCountStorage");
 let task;
-
-const trash = [
-    
-]
+let sidebarOpen = false;
 
 baseURL = "http://localhost:3000";
 
@@ -367,6 +364,24 @@ function toggleRow(button) {
     row.classList.add("tableRowCollapsed");
     row.classList.remove("tableRow");
 }
+
+let sidebarButton = document.getElementById("sidebarButton");
+
+sidebarButton.addEventListener('click', () => {
+    console.log('toggling sidebar');
+
+    let sidebarContent = document.getElementById("sidebarContent");
+
+    if (sidebarOpen === false) {
+        sidebarContent.setAttribute("class", "sidebarContentsOpened");
+        sidebarOpen = true;
+    }
+    else if (sidebarOpen === true) {
+        sidebarContent.setAttribute("class", "sidebarContentsClosed");
+        sidebarOpen = false;
+    }
+    
+});
 
 // let objectCountStorage;
 // if (localStorage.getItem("objectCountStorage") == null) {
