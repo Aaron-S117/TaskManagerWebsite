@@ -165,8 +165,13 @@
     margin-bottom: 5px;
 }
 
+#sidebarButton:hover {
+    transform: translate(0,-2px);
+    border: 2px solid yellow;
+}
+
 #sidebarButton.active {
-     transform: translateX(750%);
+     transform: translateX(16vh);
      transition-delay: .2s;
      transition-property: all;
      transition-duration: .2s;
