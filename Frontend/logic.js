@@ -61,7 +61,11 @@ async function updateCheckBox(checkBoxElement) {
         const parentRowID = parentRowElement.substring(6);
         console.log(parentRowID);
 
+        const statusCell = document.getElementById('cell-' + parentRowID + '-2');
+        statusCell.textContent = 'Task Completed';
+
         updateRecord("DONE", "1", parentRowID);
+        updateRecord("STATUS", "Task Completed", parentRowID);
     }
     else if (checkBoxElement.checked === false){
         const parentRow = checkBoxElement.closest(".tableRow");
@@ -69,7 +73,11 @@ async function updateCheckBox(checkBoxElement) {
         const parentRowID = parentRowElement.substring(6);
         console.log(parentRowID);
 
+        const statusCell = document.getElementById('cell-' + parentRowID + '-2');
+        statusCell.textContent = 'Not Done';
+
         updateRecord("DONE", "0", parentRowID);
+        updateRecord("STATUS", "Not Done", parentRowID);
     }
     else{
         console.log("Nothing Happening, CheckBox in weird state?");
