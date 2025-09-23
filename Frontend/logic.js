@@ -313,11 +313,11 @@ function setNewCellValuesAPI(result, newcell, newcell2, newcell3, newcell4, newc
     let deleteButton = createDeleteButton("Record" + result.ID);
     newcell4.appendChild(deleteButton);
 
-    let collapseButton = document.createElement("button")
-    collapseButton.setAttribute('class', 'collapseButton');
-    collapseButton.textContent = "<";
-    collapseButton.setAttribute('onclick', 'toggleRow(this)');
-    newcell5.appendChild(collapseButton)
+    // let collapseButton = document.createElement("button")
+    // collapseButton.setAttribute('class', 'collapseButton');
+    // collapseButton.textContent = "<";
+    // collapseButton.setAttribute('onclick', 'toggleRow(this)');
+    // newcell5.appendChild(collapseButton)
 
     return 'true';
 }
