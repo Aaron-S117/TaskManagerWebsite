@@ -222,6 +222,21 @@
     transform: scale(1.1);
 }
 
+#bsDiv {
+    position: absolute;
+    top: 10vh;
+    left: 165vh;
+    height: 50px;
+    width: 350px;
+    font-size: 25px;
+    z-index: 100;
+}
+
+#bsDivContents {
+    background-color: blue;
+    color: white;
+}
+
 
 
 
