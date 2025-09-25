@@ -55,7 +55,8 @@
 }
 
 .pageButtons.left {
-    margin-right: -13vh;
+    margin-left: auto;
+    margin-right: -15;
 }
 
 .pageButtons.right {

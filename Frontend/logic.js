@@ -13,11 +13,11 @@ baseURL = "http://localhost:3000";
 
 // Simulates creating a getting data at certain time spans
 // const intervalTestdata = setInterval(createTestData, 10000);
-// const intervalGetdata = setInterval(getData, 11000);
+// const intervalGetdata = setInterval(pagedata, 11000);
 
 // retrieve data from the database and creates UI based off that data
 async function getData(limit) {
-    const url = baseURL + "/tasks?limit=" + limit + '&page=' + page;
+    const url = baseURL + "/tasks?limit=" + limit + '&page=' + page + 1;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -35,7 +35,7 @@ async function getData(limit) {
 }
 
 async function pagedata() {
-    const limit = 5;
+    const limit = 15;
 
     let data = await getData(limit);
     let totalRecords = data[0]['total_rows'];
@@ -270,7 +270,7 @@ async function postData() {
 async function createTestData(){
     const url = baseURL + "/add";
 
-    for (let i = 0; i < 1; i++){
+    for (let i = 0; i < 100000; i++){
         const newTask = {
             task: 'test-' + Math.round(Math.random() * 100000) ,
             status: 'Not Done',
@@ -291,13 +291,13 @@ async function createTestData(){
             }
     
             const result = await response.json();
-            console.log(result);
+            // console.log(result);
         } catch (error) {
           console.error(error.message);
         }
     }
     // Reloads page
-    return(location.reload());
+    // return(location.reload());
 }
 
 // Main handler for creating tables from API data
