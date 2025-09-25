@@ -1,4 +1,4 @@
-run node server.js 
+node server.js 
 	- to run backend server
 python -m http.server 8080
 	- to run frontend server
