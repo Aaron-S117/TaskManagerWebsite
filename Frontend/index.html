@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-<body onload="getData()" style="background-color: black; font-family: Courier New;">   
+<body onload="pagedata()" style="background-color: black; font-family: Courier New;">   
 
     <div id="bsDiv">
         <h5 id="bsDivContents">Random Bullshit Element.EXE</h5>
@@ -37,6 +37,16 @@
         </div>
 
         <table id='taskTable' class="taskTable"> 
+            <div class="pagDiv">
+                <div id='recTotalDiv'>
+                    <p id='recTotal' style='color: white;'></p>
+                </div>
+                <div id='pagButtonDiv'>
+                    <button class='pageButtons' onclick="prevPage()">&lt;</button>
+                    <p id='pagination' style="color: white;"></p>
+                    <button class='pageButtons' onclick="nextPage()">&gt;</button>
+                </div>
+            </div>
             <div class="buttonDiv">
                 <button id='getAPIData' class="actionButton" onclick="getData()">Get API Data</button>
                 <button id='removeAPIData' class="actionButton" onclick="deleteAllRecords()">Remove API Data</button>

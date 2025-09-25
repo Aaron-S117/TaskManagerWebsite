@@ -6,6 +6,8 @@ let validation = false;
 localStorage.getItem("objectCountStorage");
 let task;
 let sidebarOpen = false;
+let page = 0;
+let overallPages = 0;
 
 baseURL = "http://localhost:3000";
 
@@ -14,8 +16,8 @@ baseURL = "http://localhost:3000";
 // const intervalGetdata = setInterval(getData, 11000);
 
 // retrieve data from the database and creates UI based off that data
-async function getData() {
-    const url = baseURL + "/tasks";
+async function getData(limit) {
+    const url = baseURL + "/tasks?limit=" + limit + '&page=' + page;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -24,9 +26,49 @@ async function getData() {
   
       const result = await response.json();
       populateAPIData(result);
-      console.log(result);
+      // console.log(result);
+
+      return result;
     } catch (error) {
       console.error(error.message);
+    }
+}
+
+async function pagedata() {
+    const limit = 5;
+
+    let data = await getData(limit);
+    let totalRecords = data[0]['total_rows'];
+
+    let totalTasks = document.getElementById("recTotal");
+    totalTasks.textContent = "Total Tasks: " + totalRecords;
+
+    let pageNumber = page + 1;
+    let pageTotal = parseInt(totalRecords/limit);
+    overallPages = pageTotal;
+    let pages = document.getElementById("pagination");
+    pages.textContent = pageNumber + ' of ' + pageTotal;
+
+}
+
+function prevPage() {
+    if (page - 1 < 0) {
+        // alert("can't go back anymore pages");
+    }
+    else {
+        page = page - 1;
+        pagedata();
+    }
+}
+
+function nextPage () {
+    
+    if (page + 1 == overallPages) {
+        // alert("No more pages");
+    }
+    else {
+        page = page + 1;
+        pagedata();
     }
 }
 
@@ -41,8 +83,8 @@ function populateAPIData(result){
     taskTableBody.innerHTML = '';
 
     Object.values(result).forEach(value => {
-        console.log(value);
-        console.log(value.ID);
+        // console.log(value);
+        // console.log(value.ID);
         // console.log(value.TASKS);
         // console.log(value.STATUS);
         // console.log(value.DONE);
@@ -214,7 +256,10 @@ async function postData() {
             const result = await response.json();
             console.log(result);
 
-            location.reload();
+            const textArea = document.getElementById("taskInput");
+            textArea.value = '';
+            alert('Task Submitted')
+            //location.reload();
         } catch (error) {
         console.error(error.message);
         }
@@ -293,7 +338,7 @@ function createNewTableRowAPI(result) {
 
 function appendNewCells(newRow, newcell, newcell2, newcell3, newcell4, newcell5) 
 {
-    console.log("Appending new cells");
+    // console.log("Appending new cells");
     newRow.appendChild(newcell);
     newRow.appendChild(newcell2);
     newRow.appendChild(newcell3);

@@ -35,6 +35,36 @@
     background-color: darkblue;
 }
 
+.pagDiv {
+    background-color: darkblue;
+    border: 2px solid grey;
+    margin: 0 auto;
+    width: 45.2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pagButtonDiv {
+    display: flex;
+    margin-left: auto;
+    margin-right: 1vh;
+}
+
+.pageButtons {
+   height: 3vh;
+   margin-top: 9%;
+}
+
+/* .pageButtons.left {
+    
+} */
+
+#recTotalDiv {
+    margin-right: auto;
+    margin-left: 1vh;
+}
+
 .buttonDiv {
     margin-top: 10px;
     margin-bottom: 10px;
