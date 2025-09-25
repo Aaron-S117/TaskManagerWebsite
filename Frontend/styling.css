@@ -48,13 +48,21 @@
 #pagButtonDiv {
     display: flex;
     margin-left: auto;
-    margin-right: 1vh;
 }
 
 .pageButtons {
    height: 3vh;
-   margin-top: 9%;
 }
+
+.pageButtons.left {
+    margin-right: -13vh;
+}
+
+.pageButtons.right {
+    margin-left: 2vh;
+    margin-right: 1vh;
+}
+
 
 /* .pageButtons.left {
     
