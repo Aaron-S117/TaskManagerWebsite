@@ -35,28 +35,43 @@ async function getData(limit) {
 }
 
 async function pagedata() {
-    const limit = 15;
+    const limit = 10;
 
     let data = await getData(limit);
     let totalRecords = data[0]['total_rows'];
 
     let totalTasks = document.getElementById("recTotal");
     totalTasks.textContent = "Total Tasks: " + totalRecords;
-
-    let pageNumber = page + 1;
+    
     let pageTotal = parseInt(totalRecords/limit);
     overallPages = pageTotal;
     let pages = document.getElementById("pagination");
-    pages.textContent = pageNumber + ' of ' + pageTotal;
+    pages.textContent = ' of ' + pageTotal;
+
+    const pageTextBox = document.getElementById("paginationTextBox");
+    pageTextBox.value = '';
+    pageTextBox.value = page;
 
 }
+
+const pageTextBox = document.getElementById("paginationTextBox");
+pageTextBox.addEventListener("keydown", (event) => {
+    if (event.key === 'Enter') {
+        const pageTextBox = document.getElementById("paginationTextBox");
+        const pageValue = pageTextBox.value;
+        page = pageValue;
+
+        pagedata();        
+    }
+});
+
 
 function prevPage() {
     if (page - 1 < 0) {
         // alert("can't go back anymore pages");
     }
     else {
-        page = page - 1;
+        page = parseInt(page) - 1;
         pagedata();
     }
 }
@@ -67,7 +82,7 @@ function nextPage () {
         // alert("No more pages");
     }
     else {
-        page = page + 1;
+        page = parseInt(page) + 1;
         pagedata();
     }
 }
