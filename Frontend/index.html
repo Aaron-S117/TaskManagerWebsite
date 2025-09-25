@@ -54,9 +54,15 @@
             </div>
             <thead>
                 <tr class="tableHeader">
-                    <th class="tableHead">Task</th>
-                    <th class="tableHead">Status</th>
-                    <th class="tableHead">Done?</th>
+                    <th class="tableHead">Task<input type="text" class='filterText'/></th>
+                    <th class="tableHead">Status<input type="text" class='filterText'/></th>
+                    <th class="tableHead">Done?
+                        <select>
+                            <option value='Empty'></option>
+                            <option value='True'>True</option>
+                            <option value='False'>False</option>
+                        </select>
+                    </th>
                     <th class="tableHead">Delete</th>
                     <th class="tableHead">Actions</th>
                 </tr>

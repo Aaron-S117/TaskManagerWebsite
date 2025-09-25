@@ -39,11 +39,11 @@ const server = http.createServer((req, res) => {
   if (parsedUrl.pathname === "/tasks" && method === 'GET') {
 
     const limit = parseInt(queryParams.get('limit')) || 100;
-    const page = parseInt(queryParams.get('page')) || 1;
+    const offset = parseInt(queryParams.get('offset')) || 0;
 
     // Read all tasks
     const stmt = db.prepare("SELECT *, (SELECT COUNT(*) FROM tasks) as total_rows FROM tasks ORDER BY id LIMIT ? OFFSET ?");
-    const rows = stmt.all(limit, page)
+    const rows = stmt.all(limit, offset)
     res.end(JSON.stringify(rows));
 
   } 

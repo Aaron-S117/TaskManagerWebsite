@@ -17,7 +17,8 @@ baseURL = "http://localhost:3000";
 
 // retrieve data from the database and creates UI based off that data
 async function getData(limit) {
-    const url = baseURL + "/tasks?limit=" + limit + '&page=' + page + 1;
+    let pageoffset = page * limit;
+    const url = baseURL + "/tasks?limit=" + limit + '&offset=' + pageoffset;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -405,26 +406,28 @@ function setTaskInput() {
     task = textItem.value;
 }
 
-let tableHeader = document.querySelectorAll(".tableHead");
 
-tableHeader.forEach(item => {
-    item.addEventListener("click", function() {
-        console.log("CollapsingHeader");
-        item.classList.remove("tableHead");
-        item.classList.add("tableHeadCollapsed");
-    });
-});
+// test code for collapsing elements
+// let tableHeader = document.querySelectorAll(".tableHead");
 
-let tableHeaderHidden = document.querySelectorAll(".tableHeadCollapsed");
+// tableHeader.forEach(item => {
+//     item.addEventListener("click", function() {
+//         console.log("CollapsingHeader");
+//         item.classList.remove("tableHead");
+//         item.classList.add("tableHeadCollapsed");
+//     });
+// });
 
-tableHeaderHidden.forEach(item => {
-    item.addEventListener("click", function() {
-        console.log("ExpandingHeader");
-        item.classList.remove("tableHeadCollapsed");
-        item.classList.add("tableHead");
+// let tableHeaderHidden = document.querySelectorAll(".tableHeadCollapsed");
+
+// tableHeaderHidden.forEach(item => {
+//     item.addEventListener("click", function() {
+//         console.log("ExpandingHeader");
+//         item.classList.remove("tableHeadCollapsed");
+//         item.classList.add("tableHead");
         
-    });
-});
+//     });
+// });
 
 function toggleRow(button) {
     console.log("Collapsing Row")
