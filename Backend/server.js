@@ -3,6 +3,8 @@ import Database from "better-sqlite3";
 
 const db = new Database('Database.db');
 import dotenv from 'dotenv';
+import { type } from "os";
+import path, { parse } from "path";
 dotenv.config();
 const baseURL = process.env.baseURL;
 const backendPort = process.env.backendPort;
@@ -30,15 +32,22 @@ const server = http.createServer((req, res) => {
   const pathSegments = segmentURL.pathname.split('/').filter(segment => segment.length > 0);
   // res.end("Hello World\n");
 
+  const parsedUrl = new URL(req.url, baseURL);
+  const queryParams = parsedUrl.searchParams;
+
   // restful APIs have a method (i.e. GET, POST, etc.) and a URL
-  if (url === "/tasks" && method === 'GET') {
+  if (parsedUrl.pathname === "/tasks" && method === 'GET') {
+
+    const limit = parseInt(queryParams.get('limit')) || 100;
+    const page = parseInt(queryParams.get('page')) || 1;
 
     // Read all tasks
-    const rows = db.prepare("SELECT * FROM tasks").all();
+    const stmt = db.prepare("SELECT *, (SELECT COUNT(*) FROM tasks) as total_rows FROM tasks ORDER BY id LIMIT ? OFFSET ?");
+    const rows = stmt.all(limit, page)
     res.end(JSON.stringify(rows));
 
   } 
-  else if (url === "/add" && method === 'POST') {
+  else if (parsedUrl.pathname === "/add" && method === 'POST') {
     // Add a sample task
     // const stmt = db.prepare("INSERT INTO tasks (TASKS) VALUES (?)");
     // const info = stmt.run("Sample task");
@@ -68,7 +77,7 @@ const server = http.createServer((req, res) => {
       }
     });
   } 
-  else if (url === '/removeTasks' && method === 'DELETE'){
+  else if (parsedUrl.pathname === '/removeTasks' && method === 'DELETE'){
     try {
       const stmt = db.prepare("DELETE FROM tasks");
       stmt.run();
@@ -102,7 +111,7 @@ const server = http.createServer((req, res) => {
       res.end(JSON.stringify({ error: "Invalid JSON or bad request", info: error.all}));
     }
   }
-  else if (url ==='/change' && method === "PUT"){
+  else if (parsedUrl.pathname ==='/change' && method === "PUT"){
   
     let body = '';
     req.on('data', (chunk) => {
