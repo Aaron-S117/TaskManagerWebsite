@@ -79,7 +79,7 @@ function prevPage() {
 
 function nextPage () {
     
-    if (page + 1 == overallPages) {
+    if (page + 1 > overallPages) {
         // alert("No more pages");
     }
     else {
